@@ -5,13 +5,15 @@ import br.com.FelipeTomazoti.desafioItau.domain.validator.exception.ValidationEx
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 public class ValorValidator implements ConstraintValidator<ValidTransacao, Transacao> {
 
     @Override
     public boolean isValid(Transacao transacao, ConstraintValidatorContext constraintValidatorContext) {
-        if (transacao.getValor() < 0) {
+        if (transacao.getValor() < 0
+                /*transacao.getValor().compareTo(BigDecimal.ZERO) < 0*/) {
             throw new ValidationExceptionAPI("Valor nao pode ser negativo!");
         }
         if (transacao.getDataHora().isAfter(OffsetDateTime.now())) {
