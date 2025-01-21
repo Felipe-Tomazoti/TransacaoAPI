@@ -1,5 +1,6 @@
 package br.com.FelipeTomazoti.desafioItau.service;
 
+import br.com.FelipeTomazoti.desafioItau.domain.Estatistica;
 import br.com.FelipeTomazoti.desafioItau.domain.Transacao;
 import br.com.FelipeTomazoti.desafioItau.repository.TransacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,9 @@ public class TransacaoService {
 
     public List<Transacao> listarTransacoes() {
         return transacaoRepository.listarTransacoes();
+    }
+
+    public Estatistica listarEstatisticas(Integer minutos) {
+        return transacaoRepository.listarEstatisticas(minutos);
     }
 }

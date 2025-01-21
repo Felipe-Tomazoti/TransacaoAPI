@@ -1,7 +1,9 @@
 package br.com.FelipeTomazoti.desafioItau.controller;
 
+import br.com.FelipeTomazoti.desafioItau.domain.Estatistica;
 import br.com.FelipeTomazoti.desafioItau.domain.Transacao;
 import br.com.FelipeTomazoti.desafioItau.service.TransacaoService;
+import io.swagger.v3.core.util.Json;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
