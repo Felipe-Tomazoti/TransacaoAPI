@@ -19,7 +19,7 @@ public class TransacaoDTO {
 
     @NotNull(message = "O Campo \"valor\" não pode ser nulo!")
     @JsonSerialize(using = DoubleSerializer.class)
-    private double valor;
+    private Double valor;
 
     @NotNull(message = "O Campo \"dataHora\" não pode ser nulo!")
     private OffsetDateTime dataHora;
