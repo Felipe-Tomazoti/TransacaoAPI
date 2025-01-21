@@ -1,30 +1,33 @@
 package br.com.FelipeTomazoti.desafioItau.controller;
 
 import br.com.FelipeTomazoti.desafioItau.domain.Estatistica;
+import br.com.FelipeTomazoti.desafioItau.domain.dto.EstatisticaDTO;
 import br.com.FelipeTomazoti.desafioItau.service.TransacaoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
-@RequestMapping("/estatistica")
-public class EstatisticaController {
-
-    @Autowired
-    private TransacaoService transacaoService;
+@RequestMapping(value = "/estatistica", produces = MediaType.APPLICATION_JSON_VALUE)
+public record EstatisticaController(TransacaoService transacaoService) {
 
     @GetMapping()
-    public ResponseEntity<Estatistica> listarEstatisticas(){
-        Estatistica est = transacaoService.listarEstatisticas(1);
+    public ResponseEntity<EstatisticaDTO> listarEstatisticas(){
+        EstatisticaDTO est = transacaoService.listarEstatisticas(1);
+        log.info("Estatisticas sobre transações realizadas a 1 minuto atrás, listdas com sucesso!");
         return ResponseEntity.ok().body(est);
     }
 
     @GetMapping("{minutos}")
-    public ResponseEntity<Estatistica> listarEstatisticasPorMinuto(@PathVariable Integer minutos){
-        Estatistica est = transacaoService.listarEstatisticas(minutos);
+    public ResponseEntity<EstatisticaDTO> listarEstatisticasPorMinuto(@PathVariable long minutos){
+        EstatisticaDTO est = transacaoService.listarEstatisticas(minutos);
+        log.info("Estatisticas sobre transações realizadas a " + minutos + "atrás, listdas com sucesso!");
         return ResponseEntity.ok().body(est);
     }
 }
