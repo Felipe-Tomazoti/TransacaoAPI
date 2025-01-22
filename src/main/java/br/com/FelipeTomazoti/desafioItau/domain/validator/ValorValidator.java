@@ -13,10 +13,10 @@ public class ValorValidator implements ConstraintValidator<ValidTransacao, Trans
 
     @Override
     public boolean isValid(TransacaoDTO transacaoDTO, ConstraintValidatorContext constraintValidatorContext) {
-        if (transacaoDTO.getValor() < 0) {
+        if (transacaoDTO.getValor() != null && transacaoDTO.getValor() < 0) {
             throw new ValidationExceptionAPI("Valor nao pode ser negativo!");
         }
-        if (transacaoDTO.getDataHora().isAfter(OffsetDateTime.now())) {
+        if (transacaoDTO.getDataHora() != null && transacaoDTO.getDataHora().isAfter(OffsetDateTime.now())) {
             throw new ValidationExceptionAPI("Transação não pode ocorrer no futuro!");
         }
         return true;
