@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  desafio-itau:
+    container_name: transacoes
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
